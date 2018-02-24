@@ -1,6 +1,7 @@
 window.onload = function() {
     var send_btn = document.querySelector('#send_btn');
     var form = document.querySelector('#form');
+    var reg = document.querySelector('#reg');
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -18,7 +19,7 @@ window.onload = function() {
                 if (!resp || !resp.info) {
                     return;
                 }
-                
+
                 if (resp.info.success) {
                     console.log('OK')
                 } else {
@@ -27,6 +28,29 @@ window.onload = function() {
             });
         // code
     });
+
+
+    reg.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var login = document.querySelector('.reg_login').value,
+            pass = document.querySelector('.reg_pass').value,
+            pass2 = document.querySelector('.reg_pass2').value;
+
+        var body = {
+                login: login,
+                pass: pass,
+                pass2: pass2
+            };
+
+        doAjax('POST', '/registration', body)
+            .then(function(resp){
+                console.log(resp);
+            });
+    });
+
+
+
 }
 
 

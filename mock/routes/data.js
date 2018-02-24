@@ -59,5 +59,24 @@ function auth(req, res) {
 		});
 }
 
+function reg(req, res) {
+	let body = JSON.parse(req.body),
+		pathSuccess = 'failed';
 
-module.exports = { getBuildings, pathConcat, getUser, auth };
+	console.log(body);
+	if (body.pass === body.pass2) {
+		pathSuccess = 'success'
+	}
+
+	let	path = pathConcat('api' + req.url + '/' + pathSuccess + '/' + req.method.toLowerCase() + '.json'),
+		servicePromise = filereader(fs, path);
+
+	
+	servicePromise
+		.then((response) => {
+			res.json(response);
+		});
+}
+
+
+module.exports = { getBuildings, pathConcat, getUser, auth, reg };

@@ -27,6 +27,9 @@ app.route('/buildings/filtred')
 app.route('/auth')
 	.post($data.auth);
 
+app.route('/registration')
+	.post($data.reg);
+
 app.route('/user/:userId')
 	.get($data.getUser);
 
